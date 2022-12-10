@@ -24,10 +24,10 @@ explainshell.com
 ## PRE CONNECTION SETUP KNOWLEDGE
 
 #### wireless adapter with props:- 
--monitor mode
--packet injection
--AP mode
--Recommended brand: Atheros AR9271, Realtek RTL8812AU
+- monitor mode
+- packet injection
+- AP mode
+- Recommended brand: Atheros AR9271, Realtek RTL8812AU
 
 before connecting network interface
 cmd- **ifconfig**
