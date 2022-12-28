@@ -11,7 +11,9 @@ apt install ettercap-text-only
  open wireshark
   sudo wireshark
  select the eth0 or wlan0
+ stop
  FILTERS: ip.addr == 10.0.4
           ip.addr == 10.0.4 && http
+ select-> follow->tcp stream/http stream
 
 </pre>
