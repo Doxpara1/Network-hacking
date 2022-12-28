@@ -35,6 +35,7 @@ sudo nano /etc/nginx/sites-available/projectname and add the following
  }location / { 
       proxy_pass http://167.99.192.225:8000; 
 }
+}
 
 cd /etc/nginx/sites-enabled/
 ls
